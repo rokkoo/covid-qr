@@ -21,9 +21,9 @@ export const getDataFromQR = async (qrData: string): Promise<QRData> => {
       }),
     });
 
-    const data = await res.json();
+    const { data } = await res.json();
 
-    return data.res;
+    return data;
   } catch (error) {
     throw error;
   }
