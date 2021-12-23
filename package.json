@@ -8,16 +8,20 @@
     "eject": "expo eject"
   },
   "dependencies": {
+    "@react-native-async-storage/async-storage": "~1.15.0",
     "base45": "^2.0.1",
     "expo": "~44.0.0",
     "expo-barcode-scanner": "~11.2.0",
+    "expo-community-flipper": "^43.0.5",
+    "expo-dev-client": "~0.7.2",
     "expo-status-bar": "~1.2.0",
     "react": "17.0.1",
     "react-dom": "17.0.1",
     "react-native": "0.64.3",
     "react-native-qrcode-svg": "^6.1.2",
     "react-native-svg": "^12.1.1",
-    "react-native-web": "0.17.1"
+    "react-native-web": "0.17.1",
+    "zustand": "^3.6.7"
   },
   "devDependencies": {
     "@babel/core": "^7.12.9",
