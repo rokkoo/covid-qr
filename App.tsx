@@ -2,6 +2,7 @@ import React, { useState, useEffect, useCallback } from 'react';
 import { Text, View, StyleSheet, Pressable } from 'react-native';
 import { BarCodeScanner } from 'expo-barcode-scanner';
 import { getDataFromQR, QRData } from './lib/getQRInfo';
+import QRCode from 'react-native-qrcode-svg';
 
 export default function App() {
   const [hasPermission, setHasPermission] = useState<Boolean | null>(null);
@@ -80,7 +81,8 @@ export default function App() {
         style={StyleSheet.absoluteFillObject}
       />
       {renderUserData()}
-      {loading && <Text>Loading...</Text>}
+      {loading && <Text style={styles.loading}>Loading...</Text>}
+      <QRCode value="http://awesome.link.qr" />
     </View>
   );
 }
@@ -104,5 +106,10 @@ const styles = StyleSheet.create({
     textAlign: 'center',
     margin: 10,
     color: '#333333',
+  },
+  loading: {
+    fontWeight: 'bold',
+    fontSize: 40,
+    color: 'tomato',
   },
 });
