@@ -1,8 +1,9 @@
 import React, { useState, useEffect, useCallback } from 'react';
-import { Text, View, StyleSheet, Pressable, Button } from 'react-native';
+import { Text, View, StyleSheet, Pressable } from 'react-native';
 import { BarCodeScanner } from 'expo-barcode-scanner';
 import QRCode from 'react-native-qrcode-svg';
-import { getDataFromQR, QRData } from '../../../lib/getQRInfo';
+
+import { getDataFromQR, QRData } from '../../lib/getQRInfo';
 import { useQrStore } from '../../store/qr';
 
 export default function QrCamera() {
@@ -13,7 +14,6 @@ export default function QrCamera() {
 
   const [userData, setUserData] = useState<QRData | null>(null);
   const addQrData = useQrStore((state) => state.addQRData);
-  const qrData = useQrStore((state) => state.qrData);
 
   useEffect(() => {
     const init = async () => {
