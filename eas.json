@@ -1,0 +1,30 @@
+{
+  "cli": {
+    "version": ">= 0.42.4"
+  },
+  "build": {
+    "production": {},
+    "development": {
+      "developmentClient": true,
+      "distribution": "internal"
+    },
+    "preview": {
+      "distribution": "internal"
+    },
+    "base": {
+      "env": {}
+    },
+    "devclient": {
+      "extends": "base",
+      "releaseChannel": "default",
+      "distribution": "internal",
+      "developmentClient": true,
+      "android": {
+        "buildType": "apk"
+      }
+    }
+  },
+  "submit": {
+    "production": {}
+  }
+}
