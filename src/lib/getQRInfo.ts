@@ -10,6 +10,7 @@ export interface QRData {
 
 export const getDataFromQR = async (qrData: string): Promise<QRData> => {
   try {
+    // @ts-ignore
     const res = await fetch(process.env.API_URL, {
       method: 'POST',
       headers: {

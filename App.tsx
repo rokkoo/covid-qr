@@ -4,7 +4,12 @@ import { createNativeStackNavigator } from '@react-navigation/native-stack';
 import Dashboard from './src/screen/Dashboard';
 import QrCamera from './src/screen/QrCamera';
 
-const Stack = createNativeStackNavigator();
+type RootStackParamList = {
+  Dashboard: undefined;
+  QrCamera: undefined;
+};
+
+const Stack = createNativeStackNavigator<RootStackParamList>();
 
 const App = () => {
   return (
