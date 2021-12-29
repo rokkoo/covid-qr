@@ -41,18 +41,7 @@ type Persist = (
 export const useQrStore = create<QRDataState>(
   (persist as Persist)(
     (set) => ({
-      qrList: [
-        {
-          id: '0',
-          name: 'test0',
-          list: [
-            {
-              code: '',
-              file: '',
-            },
-          ],
-        },
-      ],
+      qrList: [],
       addQRData: (id: string, qrInfo: QRInfo) => {
         set((state) => {
           const qrList = state.qrList.find((list) => list.id === id);
