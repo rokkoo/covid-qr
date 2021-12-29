@@ -1,36 +1,29 @@
-import { useCallback } from 'react';
-import { Button, Text, View } from 'react-native';
+import { Button } from 'react-native';
+import { Box, Heading } from 'native-base';
 
 import BottonSheet from './components/BottomSheet';
 import useDashboard from './useDashboard';
-import { useQrStore } from '../../store/qr';
+import List from './components/List';
+import OwnCertificateSection from './components/OwnCertificateSection';
 
 const Dashboard = () => {
-  const qrList = useQrStore((state) => state.qrList);
   const { handleCreateNewList, bottomSheetRef, handleCreateNewListConfirm } =
     useDashboard();
 
-  const renderQrList = useCallback(() => {
-    return qrList.map((qr) => {
-      return (
-        <View style={{ backgroundColor: 'yellow' }} key={qr.id}>
-          <Text>{qr.name}</Text>
-        </View>
-      );
-    });
-  }, [qrList]);
-
   return (
-    <View style={{ flex: 1, backgroundColor: 'red' }}>
-      <Text>List</Text>
+    <Box safeArea h="full" bg="dark.900" px={4} pt={4}>
+      <OwnCertificateSection />
+      <Heading color="dark.50" fontSize="3xl" p="4" pb="3">
+        Tus Listas
+      </Heading>
       <Button onPress={handleCreateNewList} title="Crear nueva lista" />
-      {renderQrList()}
+      <List />
 
       <BottonSheet
         bottomSheetRef={bottomSheetRef}
         handleConfirm={handleCreateNewListConfirm}
       />
-    </View>
+    </Box>
   );
 };
 

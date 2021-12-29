@@ -17,7 +17,11 @@ const App = () => {
     <CustomNativeBaseProvider>
       <NavigationContainer>
         <Stack.Navigator>
-          <Stack.Screen name="Dashboard" component={Dashboard} />
+          <Stack.Screen
+            name="Dashboard"
+            component={Dashboard}
+            options={{ headerShown: false }}
+          />
           <Stack.Screen name="QrCamera" component={QrCamera} />
         </Stack.Navigator>
       </NavigationContainer>

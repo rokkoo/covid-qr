@@ -19,7 +19,7 @@ interface QRInfo {
   file: string;
 }
 
-interface QRList {
+export interface QRList {
   id: string;
   name: string;
   list: QRInfo[];
