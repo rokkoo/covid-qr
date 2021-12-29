@@ -1,38 +1,43 @@
-import React, { useCallback, useMemo, useState } from 'react';
-import { Button, Text, TextInput, View } from 'react-native';
-import RnBottomSheet from '@gorhom/bottom-sheet';
-
-import useDashboard from '../../useDashboard';
+import React, { useCallback, useMemo, useRef, useState } from 'react';
+import { Button, Text, View } from 'react-native';
+import RnBottomSheet, { BottomSheetTextInput } from '@gorhom/bottom-sheet';
 
 interface IProps {
-  bottomSheetRef: any;
+  bottomSheetRef: React.RefObject<RnBottomSheet>;
+  handleConfirm: (name: string) => void;
 }
 
-const BottonSheet: React.FC<IProps> = ({ bottomSheetRef }) => {
-  const { handleCreateNewListConfirm } = useDashboard();
+const BottonSheet: React.FC<IProps> = ({ bottomSheetRef, handleConfirm }) => {
   const [name, setName] = useState('');
+  const inputRef = useRef<any>(null);
 
   // variables
-  const snapPoints = useMemo(() => ['25%', '50%'], []);
+  const snapPoints = useMemo(() => ['50%'], []);
 
   const handleChangeName = useCallback((text: string) => {
-    console.log({ name });
     setName(text);
   }, []);
+
+  const handleConfirmPress = useCallback(() => {
+    if (inputRef.current) {
+      inputRef.current?.blur();
+    }
+
+    handleConfirm(name);
+  }, [handleConfirm, name]);
 
   return (
     <RnBottomSheet ref={bottomSheetRef} index={-1} snapPoints={snapPoints}>
       <View style={{ backgroundColor: 'green', flex: 1 }}>
         <Text>Awesome 🎉</Text>
-        <TextInput
+        <BottomSheetTextInput
+          ref={inputRef}
           value={name}
           onChangeText={handleChangeName}
           style={{ backgroundColor: 'gray', padding: 12 }}
         />
-        <Button
-          title="Crear"
-          onPress={() => handleCreateNewListConfirm(name)}
-        />
+
+        <Button title="Crear" onPress={handleConfirmPress} />
       </View>
     </RnBottomSheet>
   );
