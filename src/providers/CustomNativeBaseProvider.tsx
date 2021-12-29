@@ -7,6 +7,12 @@ interface Props {
   children: React.ReactNode;
 }
 
+const config = {
+  dependencies: {
+    'linear-gradient': require('expo-linear-gradient').LinearGradient,
+  },
+};
+
 const CustomNativeBaseProvider: React.FC<Props> = ({ children }) => {
   const colorModeManager: StorageManager = {
     get: async () => {
@@ -31,7 +37,7 @@ const CustomNativeBaseProvider: React.FC<Props> = ({ children }) => {
   };
 
   return (
-    <NativeBaseProvider colorModeManager={colorModeManager}>
+    <NativeBaseProvider colorModeManager={colorModeManager} config={config}>
       {children}
     </NativeBaseProvider>
   );
