@@ -1,11 +1,20 @@
 import React from 'react';
-import { useWindowDimensions } from 'react-native';
-import { Box, Heading, HStack, Icon } from 'native-base';
+import { Pressable, useWindowDimensions } from 'react-native';
+import {
+  Actionsheet,
+  Box,
+  Heading,
+  HStack,
+  Text,
+  useDisclose,
+} from 'native-base';
 import QRCode from 'react-native-qrcode-svg';
 import { AntDesign } from '@expo/vector-icons';
 
 const OwnCertificateSection = () => {
   const { width } = useWindowDimensions();
+  const { isOpen, onOpen, onClose } = useDisclose();
+
   return (
     <Box shadow="2">
       <Heading color="dark.50" fontSize="4xl" pb="6">
@@ -29,12 +38,21 @@ const OwnCertificateSection = () => {
             textAlign: 'center',
           }}
         >
-          <QRCode value="http://awesome.link.qr" size={width / 3} />
+          <Pressable onPress={() => onOpen()}>
+            <QRCode value="http://awesome.link.qr" size={width / 3} />
+          </Pressable>
         </Box>
         <Box justifyContent="center" alignItems="center" flex={1}>
           <AntDesign name="filetext1" size={width / 8} color="black" />
         </Box>
       </HStack>
+      <Actionsheet isOpen={isOpen} onClose={onClose}>
+        <Actionsheet.Content>
+          <Box pt={4}>
+            <QRCode value="http://awesome.link.qr" size={width / 1.5} />
+          </Box>
+        </Actionsheet.Content>
+      </Actionsheet>
     </Box>
   );
 };
