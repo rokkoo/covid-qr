@@ -14,10 +14,23 @@ interface QRData {
   nam: Name;
 }
 
+interface QRInfo {
+  code: string;
+  file: string;
+}
+
+interface QRList {
+  id: string;
+  name: string;
+  list: QRInfo[];
+}
+
 interface QRDataState {
-  qrData: QRData[];
-  addQRData: (qrData: QRData) => void;
-  removeQRData: (qrData: QRData) => void;
+  qrList: QRList[];
+  addQRData: (id: string, qrData: QRInfo) => void;
+  createNewList: (name: string) => void;
+  removeQRData: (id: string) => void;
+  removeAllQRData: () => Promise<void>;
 }
 
 type Persist = (
@@ -28,16 +41,58 @@ type Persist = (
 export const useQrStore = create<QRDataState>(
   (persist as Persist)(
     (set) => ({
-      qrData: [],
-      addQRData: (qrData: QRData) => {
-        set((state) => ({
-          qrData: [...state.qrData, qrData],
-        }));
+      qrList: [
+        {
+          id: '0',
+          name: 'test0',
+          list: [
+            {
+              code: '',
+              file: '',
+            },
+          ],
+        },
+      ],
+      addQRData: (id: string, qrInfo: QRInfo) => {
+        set((state) => {
+          const qrList = state.qrList.find((list) => list.id === id);
+
+          if (qrList) {
+            const exist = qrList.list.find((item) => item.code === qrInfo.code);
+
+            if (!exist) {
+              qrList.list = [...qrList.list, qrInfo];
+
+              return { qrList: [...state.qrList, qrList] };
+            }
+          }
+
+          throw new Error('not found');
+        });
       },
-      removeQRData: (qrData: QRData) => {
-        set((state) => ({
-          qrData: state.qrData.filter((data) => data !== qrData),
-        }));
+      createNewList: (name: string) => {
+        set((state) => {
+          // TODO: use uuid
+          const id = `${Date.now()}`;
+
+          const qrList = {
+            id,
+            name,
+            list: [],
+          };
+
+          return { qrList: [...state.qrList, qrList] };
+        });
+      },
+      removeQRData: (id: string) => {
+        set((state) => {
+          const list = state.qrList.filter((list) => list.id !== id);
+
+          return { qrList: [...list] };
+        });
+      },
+      removeAllQRData: async () => {
+        await AsyncStorage.clear();
       },
     }),
     {
