@@ -8,20 +8,6 @@ import { BarCodeScanner } from 'expo-barcode-scanner';
 import { useQrStore } from '../../store/qr';
 
 const useDashboard = () => {
-  const { createNewList } = useQrStore();
-  const bottomSheetRef = useRef<BottomSheet>(null);
-
-  const handleCreateNewList = useCallback(async () => {
-    // createNewList('testxd');
-    // console.log(bottomSheetRef);
-    bottomSheetRef?.current?.expand();
-  }, []);
-
-  const handleCreateNewListConfirm = (name: string) => {
-    createNewList(name);
-    bottomSheetRef?.current?.close();
-  };
-
   const decode = async () => {
     try {
       const { status } =
@@ -75,7 +61,7 @@ const useDashboard = () => {
     }
   };
 
-  return { handleCreateNewList, bottomSheetRef, handleCreateNewListConfirm };
+  return { decode };
 };
 
 export default useDashboard;

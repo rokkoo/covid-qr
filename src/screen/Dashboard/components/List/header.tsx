@@ -1,18 +1,23 @@
 import React from 'react';
-import { Box, Heading, HStack, Pressable, Spacer } from 'native-base';
+import { Box, Heading, HStack, Pressable } from 'native-base';
 import { AntDesign } from '@expo/vector-icons';
+import useAppNavaigation from '../../../../hooks/useAppNavaigation';
 
-interface IProps {
-  handleCreateNewList: () => void;
-}
+interface IProps {}
 
-const Header: React.FC<IProps> = ({ handleCreateNewList }) => {
+const Header: React.FC<IProps> = () => {
+  const navigation = useAppNavaigation();
+
+  const handleNaviagteToCreateNewList = () => {
+    navigation.navigate('CreateNewList');
+  };
+
   return (
     <HStack alignItems="center" justifyContent="space-between">
       <Heading color="dark.50" fontSize="3xl" p="4" pb="3">
         Tus Listas
       </Heading>
-      <Pressable onPress={handleCreateNewList}>
+      <Pressable onPress={handleNaviagteToCreateNewList}>
         {({ isHovered, isFocused, isPressed }) => {
           return (
             <Box

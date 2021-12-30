@@ -4,16 +4,14 @@ import { useQrStore } from '../../../../store/qr';
 import Header from './header';
 import Item from './Item';
 
-interface Props {
-  handleCreateNewList: () => void;
-}
+interface Props {}
 
-const Lis: React.FC<Props> = ({ handleCreateNewList }) => {
+const Lis: React.FC<Props> = () => {
   const qrList = useQrStore((state) => state.qrList);
 
   return (
     <Box>
-      <Header handleCreateNewList={handleCreateNewList} />
+      <Header />
       <FlatList data={qrList} renderItem={({ item }) => <Item item={item} />} />
     </Box>
   );

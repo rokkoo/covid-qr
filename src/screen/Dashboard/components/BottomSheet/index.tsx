@@ -10,7 +10,8 @@ interface IProps {
   handleConfirm: (name: string) => void;
 }
 
-const BottonSheet: React.FC<IProps> = ({ bottomSheetRef, handleConfirm }) => {
+// TODO: not working on android, need to fix
+const BottomSheet: React.FC<IProps> = ({ bottomSheetRef, handleConfirm }) => {
   const [name, setName] = useState('');
   const inputRef = useRef<any>(null);
 
@@ -63,4 +64,4 @@ const BottonSheet: React.FC<IProps> = ({ bottomSheetRef, handleConfirm }) => {
   );
 };
 
-export default BottonSheet;
+export default BottomSheet;
