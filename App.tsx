@@ -4,9 +4,11 @@ import CustomNativeBaseProvider from './src/providers/CustomNativeBaseProvider';
 
 import Dashboard from './src/screen/Dashboard';
 import QrCamera from './src/screen/QrCamera';
+import CreateNewList from './src/screen/CreateNewList';
 
-type RootStackParamList = {
+export type RootStackParamList = {
   Dashboard: undefined;
+  CreateNewList: undefined;
   QrCamera: undefined;
 };
 
@@ -17,12 +19,21 @@ const App = () => {
     <CustomNativeBaseProvider>
       <NavigationContainer>
         <Stack.Navigator>
-          <Stack.Screen
-            name="Dashboard"
-            component={Dashboard}
-            options={{ headerShown: false }}
-          />
-          <Stack.Screen name="QrCamera" component={QrCamera} />
+          <Stack.Group>
+            <Stack.Screen
+              name="Dashboard"
+              component={Dashboard}
+              options={{ headerShown: false }}
+            />
+            <Stack.Screen name="QrCamera" component={QrCamera} />
+          </Stack.Group>
+          <Stack.Group screenOptions={{ presentation: 'modal' }}>
+            <Stack.Screen
+              name="CreateNewList"
+              component={CreateNewList}
+              options={{ headerTitle: 'Crear nueva lista' }}
+            />
+          </Stack.Group>
         </Stack.Navigator>
       </NavigationContainer>
     </CustomNativeBaseProvider>
