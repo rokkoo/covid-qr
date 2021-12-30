@@ -8,6 +8,7 @@ const DashboardHeader = () => {
       <OwnCertificateSection />
       <Spacer my="4" />
       <Header />
+      <Spacer my="2" />
     </Box>
   );
 };

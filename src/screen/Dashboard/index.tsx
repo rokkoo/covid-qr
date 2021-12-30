@@ -8,11 +8,12 @@ const Dashboard = () => {
   const qrList = useQrStore((state) => state.qrList);
 
   return (
-    <Box safeArea h="full" bg="dark.900" px={4} pt={4}>
+    <Box safeArea h="full" bg="warmGray.100" px={4} pt={4}>
       <FlatList
         data={qrList}
         ListHeaderComponent={<DashboardHeader />}
         renderItem={({ item }) => <CertificateListItem item={item} />}
+        showsVerticalScrollIndicator={false}
       />
     </Box>
   );

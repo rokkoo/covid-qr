@@ -14,7 +14,7 @@ const Header: React.FC<IProps> = () => {
 
   return (
     <HStack alignItems="center" justifyContent="space-between">
-      <Heading color="dark.50" fontSize="3xl">
+      <Heading color="blue.600" fontSize="3xl">
         Tus Listas
       </Heading>
       <Pressable onPress={handleNaviagteToCreateNewList}>

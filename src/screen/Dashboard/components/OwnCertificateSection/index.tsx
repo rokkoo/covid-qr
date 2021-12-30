@@ -17,14 +17,14 @@ const OwnCertificateSection = () => {
 
   return (
     <Box>
-      <Heading color="dark.50" fontSize="4xl" pb="4">
+      <Heading color="blue.600" fontSize="4xl" pb="4">
         Tu certificado
       </Heading>
-      <HStack bgColor="white" rounded="xl" shadow="2">
+      <HStack bgColor="white" rounded="xl" shadow="1">
         <Box
           bg={{
             linearGradient: {
-              colors: ['blue.600', 'blue.400'],
+              colors: ['purple.900', 'purple.500', 'blue.800'],
               start: [0, 1],
               end: [1, 0],
             },
