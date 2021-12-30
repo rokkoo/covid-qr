@@ -1,5 +1,4 @@
-import { Button } from 'react-native';
-import { Box, Heading } from 'native-base';
+import { Box } from 'native-base';
 
 import BottonSheet from './components/BottomSheet';
 import useDashboard from './useDashboard';
@@ -13,11 +12,7 @@ const Dashboard = () => {
   return (
     <Box safeArea h="full" bg="dark.900" px={4} pt={4}>
       <OwnCertificateSection />
-      <Heading color="dark.50" fontSize="3xl" p="4" pb="3">
-        Tus Listas
-      </Heading>
-      <Button onPress={handleCreateNewList} title="Crear nueva lista" />
-      <List />
+      <List handleCreateNewList={handleCreateNewList} />
 
       <BottonSheet
         bottomSheetRef={bottomSheetRef}
