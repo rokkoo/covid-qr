@@ -1,6 +1,9 @@
 import React, { useCallback, useMemo, useRef, useState } from 'react';
 import { Button, Text, View } from 'react-native';
-import RnBottomSheet, { BottomSheetTextInput } from '@gorhom/bottom-sheet';
+import RnBottomSheet, {
+  BottomSheetBackdrop,
+  BottomSheetTextInput,
+} from '@gorhom/bottom-sheet';
 
 interface IProps {
   bottomSheetRef: React.RefObject<RnBottomSheet>;
@@ -18,16 +21,33 @@ const BottonSheet: React.FC<IProps> = ({ bottomSheetRef, handleConfirm }) => {
     setName(text);
   }, []);
 
-  const handleConfirmPress = useCallback(() => {
+  const blurInput = useCallback(() => {
     if (inputRef.current) {
       inputRef.current?.blur();
     }
+  }, []);
 
+  const handleConfirmPress = useCallback(() => {
+    blurInput();
     handleConfirm(name);
+    setName('');
   }, [handleConfirm, name]);
 
+  // Hide bottomsheet when user press outside
+  const renderBackdrop = useCallback((props) => {
+    blurInput();
+
+    return <BottomSheetBackdrop {...props} disappearsOnIndex={-1} />;
+  }, []);
+
   return (
-    <RnBottomSheet ref={bottomSheetRef} index={-1} snapPoints={snapPoints}>
+    <RnBottomSheet
+      ref={bottomSheetRef}
+      index={-1}
+      snapPoints={snapPoints}
+      enablePanDownToClose
+      backdropComponent={renderBackdrop}
+    >
       <View style={{ backgroundColor: 'green', flex: 1 }}>
         <Text>Awesome 🎉</Text>
         <BottomSheetTextInput
