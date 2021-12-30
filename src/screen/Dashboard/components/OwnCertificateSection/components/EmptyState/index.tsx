@@ -8,12 +8,19 @@ const EmptyState = () => {
     <Box width="100%" justifyContent="center" alignItems="center">
       <Pressable onPress={() => console.log('empty state2')}>
         <Box
-          backgroundColor="blue.700"
+          // backgroundColor="blue.700"
           borderRadius="16"
           borderWidth="1"
           borderColor="trueGray.100"
           justifyContent="center"
           alignItems="center"
+          bg={{
+            linearGradient: {
+              colors: ['blue.900', 'purple.500', 'blue.800'],
+              start: [0, 1],
+              end: [1, 0],
+            },
+          }}
           py="4"
           px="9"
         >
@@ -28,7 +35,7 @@ const EmptyState = () => {
             >
               <AntDesign name="addfile" size={24} color="white" />
             </Box>
-            <Text color="lightBlue.100" fontSize="xl">
+            <Text color="white" fontSize="xl">
               Agregar tú certificado
             </Text>
           </HStack>
