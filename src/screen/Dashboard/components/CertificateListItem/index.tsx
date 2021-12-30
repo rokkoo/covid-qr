@@ -42,4 +42,4 @@ const CertificateListItem: React.FC<Props> = ({ item }) => {
   );
 };
 
-export default CertificateListItem;
+export default React.memo(CertificateListItem);
