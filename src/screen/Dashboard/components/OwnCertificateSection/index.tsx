@@ -16,11 +16,11 @@ const OwnCertificateSection = () => {
   const { isOpen, onOpen, onClose } = useDisclose();
 
   return (
-    <Box shadow="2">
+    <Box>
       <Heading color="dark.50" fontSize="4xl" pb="6">
         Tu certificado
       </Heading>
-      <HStack bgColor="white" rounded="xl">
+      <HStack bgColor="white" rounded="xl" shadow="2">
         <Box
           bg={{
             linearGradient: {
