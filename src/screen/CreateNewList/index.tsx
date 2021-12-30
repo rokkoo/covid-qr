@@ -5,6 +5,7 @@ import {
   FormControl,
   VStack,
   WarningOutlineIcon,
+  Text,
 } from 'native-base';
 import useCreateNewList from './useCreateNewList';
 
@@ -47,12 +48,14 @@ const CreateNewList = () => {
           Guardar
         </Button>
         <Button
-          variant="ghost"
+          // variant="ghost"
           colorScheme="danger"
           onPress={handleDissmiss}
           mt="4"
+          backgroundColor="transparent"
           _text={{
             fontSize: 'lg',
+            color: 'red.500',
           }}
         >
           Cancelar
