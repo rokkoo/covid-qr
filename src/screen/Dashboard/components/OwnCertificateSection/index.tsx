@@ -17,7 +17,7 @@ const OwnCertificateSection = () => {
 
   return (
     <Box>
-      <Heading color="dark.50" fontSize="4xl" pb="6">
+      <Heading color="dark.50" fontSize="4xl" pb="4">
         Tu certificado
       </Heading>
       <HStack bgColor="white" rounded="xl" shadow="2">

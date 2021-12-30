@@ -6,7 +6,7 @@ interface Props {
   item: QRList;
 }
 
-const Item: React.FC<Props> = ({ item }) => {
+const CertificateListItem: React.FC<Props> = ({ item }) => {
   return (
     <Box
       borderBottomWidth="1"
@@ -54,4 +54,4 @@ const Item: React.FC<Props> = ({ item }) => {
   );
 };
 
-export default React.memo(Item);
+export default React.memo(CertificateListItem);

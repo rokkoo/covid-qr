@@ -14,7 +14,7 @@ const Header: React.FC<IProps> = () => {
 
   return (
     <HStack alignItems="center" justifyContent="space-between">
-      <Heading color="dark.50" fontSize="3xl" p="4" pb="3">
+      <Heading color="dark.50" fontSize="3xl">
         Tus Listas
       </Heading>
       <Pressable onPress={handleNaviagteToCreateNewList}>
@@ -40,4 +40,4 @@ const Header: React.FC<IProps> = () => {
   );
 };
 
-export default Header;
+export default React.memo(Header);
