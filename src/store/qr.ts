@@ -67,10 +67,11 @@ export const useQrStore = create<QRDataState>(
           const qrList = {
             id,
             name,
+            createAt: new Date().toISOString(),
             list: [],
           };
 
-          return { qrList: [...state.qrList, qrList] };
+          return { qrList: [qrList, ...state.qrList] };
         });
       },
       removeQRData: (id: string) => {
